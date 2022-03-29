@@ -1,10 +1,10 @@
 // using Microsoft.VisualStudio.TestTools.UnitTesting;
-// using ProjectName.Models;
+// using RecipeBox.Models;
 
-// namespace ProjectName.Tests
+// namespace RecipeBox.Tests
 // {
 //   [TestClass]
-//   public class ClassNameTests
+//   public class RecipeTests
 //   {
 //     // Test methods go here
 //   }

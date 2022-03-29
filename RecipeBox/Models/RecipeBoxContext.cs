@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ProjectName.Models
+namespace RecipeBox.Models
 {
-  public class ProjectNameContext : IdentityDbContext<ApplicationUser>
+  public class RecipeBoxContext : IdentityDbContext<ApplicationUser>
   {
     public DbSet<DatabaseTablePlaceholder> DatabaseTablePlaceholder { get; set; }
-    public ProjectNameContext(DbContextOptions options) : base(options) { }
+    public RecipeBoxContext(DbContextOptions options) : base(options) { }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
       optionsBuilder.UseLazyLoadingProxies();
