@@ -48,5 +48,24 @@ namespace RecipeBox.Controllers
         .FirstOrDefault(recipe => recipe.RecipeId == id);
       return View(foundRecipe);
     }
+
+    public ActionResult Edit(int id)
+    {
+      Recipe foundRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      ViewBag.TagId = new SelectList(_db.Tags, "TagId", "Name");
+      return View(foundRecipe);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Recipe recipe, int TagId)
+    {
+      if (TagId != 0)
+      {
+        _db.RecipeTags.Add(new RecipeTag() {TagId = TagId, RecipeId = recipe.RecipeId});
+      }
+      _db.Entry(recipe).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
