@@ -10,8 +10,8 @@
 
 <h4>Recipe:</h4>
 <p><strong>@Html.DisplayNameFor(model => model.Name): </strong>@Html.DisplayFor(model => model.Name)</p>
-<p><strong>Ingredients: </strong>@Html.DisplayFor(model => model.Ingredients)</p>
-<p><strong>Instructions: </strong>@Html.DisplayFor(model => model.Instructions)</p>
+<p><strong>Ingredients: </strong><br>@Html.DisplayFor(model => model.Ingredients)</p>
+<p><strong>Instructions: </strong><br>@Html.DisplayFor(model => model.Instructions)</p>
 
 @if (Model.JoinEntities.Count == 0)
 {
