@@ -1,8 +1,8 @@
-# {Application name here}
+# Recipe Box
 
-#### By _**{List of contributors}**_
+#### By _**Christopher Nakayama and Patrick Dolan**_
 
-#### _{Brief description of application}_
+#### _A web application that lets users keep track of recipes._
 
 ## Technologies Used
 
@@ -13,7 +13,7 @@
 
 ## Description
 
-{This is a detailed description of your application. Give as much detail as needed to explain what the application does as well as any other information you want users or other developers to have.}
+A web application that lets users keep track of recipes.
 
 ## Setup/Installation Requirements
 
@@ -52,29 +52,16 @@ Example of complete appsettings.json:
 * Confirm the database has been imported and you can check it by clicking the "Schemas" tab on the navigator at the left side of the program. Right click in the white space and select "Refresh All"
 * Now using your IDE navigate into the HairSalon/HairSalon/ folder and use the command <code>dotnet run</code> to launch the program. 
 * The site should be available at the server address you used in the <code>appsettings.json</code> folder.
+* Make sure to change the Identity services configuration to make passwords more secure as the current settings are in place to make development easier but are not good settings for secure passwords
 
 ### Test Setup/Installation
 
 * Open the repo on your editor of choice/terminal
-* Navigate to ProjectName.Tests directory in your terminal
+* Navigate to RecipeBox.Tests directory in your terminal
 * Run the following command to setup testing:  
 <code>dotnet restore</code>  
-* Run tests by going to the test project in the terminal (ProjectName.Solution/ProjectName.Tests) and running the following command:  
+* Run tests by going to the test project in the terminal (RecipeBox.Solution/RecipeBox.Tests) and running the following command:  
 <code>dotnet test</code>  
-<br>--TEMPLATE INSTRUCTIONS DELETE FOLLOWING AFTER SETUP--  
-[Resource on how to build/use this template](https://www.learnhowtoprogram.com/c-and-net-part-time/test-driven-development-with-c/mstest-configuration-quick-reference)
-* In Startup.cs change ProjectName for database class name in configurationServices class.  
-Example: <code>.AddDbContext<ProjectNameContext\></code> changed to <code>.AddDbContext<ToDoListContext\></code>
-* In ProjectNameContext.cs model the DbSet type and name should be renamed to what the table in the database represents.
-* <strong>Make sure to rename ProjectName & ClassName in ProjectName.Tests to match those in the ProjectName directory tree.</strong>  
-* Rename the ProjectName in the following files for use: ProjectName in all folder its included in, Homecontroller.cs, ClassName.cs, PageName.cshtml, Program.cs,ProjectNameContext.cs, and Startup.cs.
-* Once everything is renamed and can build navigate into the production folder <code>ProjectName/ProjectName/</code> and run the following command to make the initial migrations directory: <br>
-<code>dotnet ef migrations add Initial</code>
-
-<br>
-* When renaming project files for new project make sure to rename all fields with "ProjectName" as the directory/file name. This includes line 13 of "ProjectName.Tests.csproj" to the names of your directories. 
-
-* Make sure to change the Identity services configuration to make passwords more secure as the current settings are in place to make development easier but are not good settings for secure passwords
 
 ## Known Bugs
 
@@ -83,10 +70,10 @@ Example: <code>.AddDbContext<ProjectNameContext\></code> changed to <code>.AddDb
 ## Contact Me
 
 Let me know if you run into any issues or have questions, ideas or concerns:  
-{PUT EMAIL HERE}
+dolanp1992@gmail.com
 
 ## License
 
 _MIT_
 
-Copyright (c) _date_ _author name(s)_
+Copyright (c) _2022_ _Christopher Nakayama and Patrick Dolan_
