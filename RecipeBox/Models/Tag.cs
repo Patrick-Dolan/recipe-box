@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace TagBox.Models
+namespace RecipeBox.Models
 {
   public class Tag
   {
