@@ -5,7 +5,9 @@ namespace RecipeBox.Models
 {
   public class RecipeBoxContext : IdentityDbContext<ApplicationUser>
   {
-    public DbSet<DatabaseTablePlaceholder> DatabaseTablePlaceholder { get; set; }
+    public DbSet<Recipe> Recipes { get; set; }
+    public DbSet<Tag> Tags { get; set; }
+    public DbSet<RecipeTag> RecipeTags { get; set; }
     public RecipeBoxContext(DbContextOptions options) : base(options) { }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
