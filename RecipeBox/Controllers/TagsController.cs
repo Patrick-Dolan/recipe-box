@@ -46,5 +46,19 @@ namespace RecipeBox.Controllers
         .FirstOrDefault(model => model.TagId == id);
       return View(foundTag);
     }
+
+    public ActionResult Edit(int id)
+    {
+      Tag foundTag = _db.Tags.FirstOrDefault(model => model.TagId == id);
+      return View(foundTag);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Tag tag)
+    {
+      _db.Entry(tag).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = tag.TagId});
+    }
   }
 }
