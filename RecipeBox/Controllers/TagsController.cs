@@ -75,5 +75,32 @@ namespace RecipeBox.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult AddRecipe(int id)
+    {
+      Tag foundTag = _db.Tags.FirstOrDefault(model => model.TagId == id);
+      ViewBag.RecipeId = new SelectList(_db.Recipes, "RecipeId", "Name");
+      return View(foundTag);
+    }
+
+    [HttpPost]
+    public ActionResult AddRecipe(Tag tag, int RecipeId)
+    {
+      if (RecipeId != 0)
+      {
+        _db.RecipeTags.Add(new RecipeTag{ TagId = tag.TagId, RecipeId = RecipeId});
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteRecipe(int id)
+    {
+      var joinEntry = _db.RecipeTags.FirstOrDefault(entry => entry.RecipeTagId == id);
+      _db.RecipeTags.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
