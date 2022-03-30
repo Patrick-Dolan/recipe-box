@@ -60,5 +60,20 @@ namespace RecipeBox.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = tag.TagId});
     }
+
+    public ActionResult Delete(int id)
+    {
+      Tag foundTag = _db.Tags.FirstOrDefault(model => model.TagId == id);
+      return View(foundTag);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Tag foundTag = _db.Tags.FirstOrDefault(model => model.TagId == id);
+      _db.Tags.Remove(foundTag);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
