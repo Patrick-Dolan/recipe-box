@@ -25,7 +25,7 @@ namespace RecipeBox.Controllers
     {
       return View();
     }
-    
+
     [HttpPost]
     public ActionResult Create(Tag tag, int RecipeId)
     {
@@ -36,6 +36,15 @@ namespace RecipeBox.Controllers
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    public ActionResult Details(int id)
+    {
+      Tag foundTag = _db.Tags
+        .Include(tag => tag.JoinEntities)
+        .ThenInclude(join => join.Recipe)
+        .FirstOrDefault(model => model.TagId == id);
+      return View(foundTag);
     }
   }
 }
