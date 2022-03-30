@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBox.Models.Tag
+
+<h2>Create tag</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(Model => Model.Name)
+  @Html.TextBoxFor(Model => Model.Name)
+
+  <input type="submit" value="Add tag" class="btn btn-success" />
+}
