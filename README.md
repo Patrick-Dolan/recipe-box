@@ -1,6 +1,6 @@
 # Recipe Box
 
-#### By _**Christopher Nakayama and Patrick Dolan**_
+#### By _**Chris Nakayama and Patrick Dolan**_
 
 #### _A web application that lets users keep track of recipes._
 
