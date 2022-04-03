@@ -3,15 +3,11 @@
 }
 
 @using RecipeBox.Models
-@model List<RecipeBox.Models.Recipe>
+@model IEnumerable<RecipeBox.Models.Recipe>
 
-<h2>Recipes</h2>
+<h2>Recipes for @User.Identity.Name</h2>
 
-@if (Model.Count == 0)
-{
-  <p>There are no recipes in the system.</p>
-}
-else
+@if (Model.Any())
 {
   <ul>
     @foreach (Recipe recipe in Model)
@@ -19,6 +15,10 @@ else
       <li>@Html.ActionLink($"{recipe.Name}", "Details", new { id = recipe.RecipeId})</li>
     }
   </ul>
+}
+else
+{
+  <p>No recipes added yet.</p>
 }
 
 <p>@Html.ActionLink("Add recipe", "Create")</p>

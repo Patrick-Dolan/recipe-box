@@ -5,20 +5,28 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RecipeBox.Models;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace RecipeBox.Controllers
 {
+  [Authorize]
   public class RecipesController : Controller
   {
     private readonly RecipeBoxContext _db;
-    public RecipesController(RecipeBoxContext db)
+    private readonly UserManager<ApplicationUser> _userManager;
+    public RecipesController(UserManager<ApplicationUser> userManager, RecipeBoxContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-      return View(_db.Recipes.ToList());
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var userRecipes = _db.Recipes.Where(entry => entry.User.Id == currentUser.Id).ToList();
+      return View(userRecipes);
     }
 
     public ActionResult Create()
@@ -28,15 +36,18 @@ namespace RecipeBox.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Recipe recipe, int TagId)
+    public async Task<ActionResult> Create(Recipe recipe, int TagId)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      recipe.User = currentUser;
       _db.Recipes.Add(recipe);
       _db.SaveChanges();
       if (TagId != 0)
       {
         _db.RecipeTags.Add(new RecipeTag() {TagId = TagId, RecipeId = recipe.RecipeId});
-        _db.SaveChanges();
       }
+      _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
