@@ -34,7 +34,7 @@ namespace RecipeBox.Controllers
     {
       return View();
     }
-    
+
     [HttpPost]
     public async Task<ActionResult> Create(Tag tag, int RecipeId)
     {
@@ -88,10 +88,12 @@ namespace RecipeBox.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult AddRecipe(int id)
+    public async Task<ActionResult> AddRecipe(int id)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      ViewBag.RecipeId = new SelectList(_db.Recipes.Where(entry => entry.User.Id == currentUser.Id), "RecipeId", "Name");
       Tag foundTag = _db.Tags.FirstOrDefault(model => model.TagId == id);
-      ViewBag.RecipeId = new SelectList(_db.Recipes, "RecipeId", "Name");
       return View(foundTag);
     }
 
