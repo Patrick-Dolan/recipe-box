@@ -4,7 +4,6 @@ namespace RecipeBox.Models
 {
   public class Recipe
   {
-    private readonly RecipeBoxContext _db;
     public Recipe()
     {
       this.JoinEntities = new HashSet<RecipeTag>();
