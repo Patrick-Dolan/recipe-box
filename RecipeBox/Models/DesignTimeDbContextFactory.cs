@@ -7,7 +7,6 @@ namespace RecipeBox.Models
 {
   public class RecipeBoxContextFactory : IDesignTimeDbContextFactory<RecipeBoxContext>
   {
-
     RecipeBoxContext IDesignTimeDbContextFactory<RecipeBoxContext>.CreateDbContext(string[] args)
     {
       IConfigurationRoot configuration = new ConfigurationBuilder()
