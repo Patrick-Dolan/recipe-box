@@ -22,11 +22,11 @@
         <li class="nav-item">
           @if (User.Identity.IsAuthenticated)
           {
-            @Html.ActionLink("Signed in", "Index", "Account", null, new { @class = "nav-link"});
+            @Html.ActionLink($"{User.Identity.Name}", "Index", "Account", null, new { @class = "nav-link"});
           }
           else
           {
-            @Html.ActionLink("Sign in", "Register", "Account", null, new { @class = "nav-link"});
+            @Html.ActionLink("Sign in", "Index", "Account", null, new { @class = "nav-link"});
           }
         </li>
       </ul>
