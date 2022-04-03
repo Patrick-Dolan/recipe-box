@@ -10,10 +10,12 @@
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.RecipeId)
-
+  @Html.HiddenFor(model => model.RecipeId)
+  
+  <div class="mb-3">
     @Html.Label("Select tag")
-    @Html.DropDownList("TagId", "Add tag")
+    @Html.DropDownList("TagId", ViewBag.TagId, "Add Tag", new { @class = "form-control"})
+  </div>
 
-    <input type="submit" value="Save" />
+  <input type="submit" value="Save" class="btn btn-success" />
 }
