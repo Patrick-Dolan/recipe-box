@@ -5,30 +5,41 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RecipeBox.Models;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace RecipeBox.Controllers
 {
+  [Authorize]
   public class TagsController : Controller
   {
     private readonly RecipeBoxContext _db;
-    public TagsController(RecipeBoxContext db)
+    private readonly UserManager<ApplicationUser> _userManager;
+
+    public TagsController(UserManager<ApplicationUser> userManager, RecipeBoxContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-      return View(_db.Tags.ToList());
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var userTags = _db.Tags.Where(entry => entry.User.Id == currentUser.Id).ToList();
+      return View(userTags);
     }
 
     public ActionResult Create()
     {
       return View();
     }
-
     [HttpPost]
-    public ActionResult Create(Tag tag, int RecipeId)
+    public async Task<ActionResult> Create(Tag tag, int RecipeId)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      tag.User = currentUser;
       _db.Tags.Add(tag);
       if (RecipeId != 0)
       {
