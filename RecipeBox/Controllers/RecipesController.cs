@@ -29,9 +29,11 @@ namespace RecipeBox.Controllers
       return View(userRecipes);
     }
 
-    public ActionResult Create()
+    public async Task<ActionResult> Create()
     {
-      ViewBag.TagId = new SelectList(_db.Tags, "TagId", "Name");
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      ViewBag.TagId = new SelectList(_db.Tags.Where(entry => entry.User.Id == currentUser.Id), "TagId", "Name");
       return View();
     }
 
