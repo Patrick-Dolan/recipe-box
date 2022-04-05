@@ -13,13 +13,13 @@
   @Html.HiddenFor(model => model.RecipeId)
 
   @Html.LabelFor(model => model.Name)
-  @Html.EditorFor(model => model.Name, new { required="required"})
+  @Html.EditorFor(model => model.Name)
   
   @Html.LabelFor(model => model.Ingredients)
-  @Html.EditorFor(model => model.Ingredients, new { required="required"})
+  @Html.EditorFor(model => model.Ingredients)
 
   @Html.LabelFor(model => model.Instructions)
-  @Html.EditorFor(model => model.Instructions, new { required="required"})
+  @Html.EditorFor(model => model.Instructions)
 
   @Html.Label("Select tag")
   @Html.DropDownList("TagId", "Select Tag")

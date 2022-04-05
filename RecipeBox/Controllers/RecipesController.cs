@@ -72,6 +72,10 @@ namespace RecipeBox.Controllers
     [HttpPost]
     public ActionResult Edit(Recipe recipe, int TagId)
     {
+      if (recipe.Name == null || recipe.Ingredients == null || recipe.Instructions == null)
+      {
+        return RedirectToAction("Edit", new { id = recipe.RecipeId});
+      }
       if (TagId != 0)
       {
         _db.RecipeTags.Add(new RecipeTag() {TagId = TagId, RecipeId = recipe.RecipeId});
