@@ -11,10 +11,10 @@
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.Email)
-  @Html.TextBoxFor(model => model.Email)
+  @Html.TextBoxFor(model => model.Email, new { required="required"})
 
   @Html.LabelFor(model => model.Password)
-  @Html.TextBoxFor(model => model.Password)
+  @Html.TextBoxFor(model => model.Password, new { required="required"})
 
   <input type="submit" value="Log in" class="btn btn-success" />
 }
