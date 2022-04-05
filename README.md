@@ -43,16 +43,9 @@ Example of complete appsettings.json:
 ```
 * Make sure to run your mysql server and open MySql workbench.
 * Open MySql Workbench and login to your server.
-* Click on the Administration tab in the Navigator on the left side of the screen. (this tab will likely be on the bottom of the window)
-* In the management section of this administration tab click on the button called <code>Data Import/Export</code>. 
-* Once the data import window opens click on <code>Import from Self-Contained file</code> radio button, navigate into the project folder and select <code>patrick_dolan.sql</code> using the file path next to that radio button.
-* Now click on the <code>New...</code> button in the section marked "Default Schema to be Imported To" directly underneath the import options section.
-* Click on the "Import Progress" tab at the top of the Data import window.
-* At the bottom of this tab click the button that reads <code>Start Import</code>.
-* Confirm the database has been imported and you can check it by clicking the "Schemas" tab on the navigator at the left side of the program. Right click in the white space and select "Refresh All"
-* Now using your IDE navigate into the HairSalon/HairSalon/ folder and use the command <code>dotnet run</code> to launch the program. 
-* The site should be available at the server address you used in the <code>appsettings.json</code> folder.
-* Make sure to change the Identity services configuration to make passwords more secure as the current settings are in place to make development easier but are not good settings for secure passwords
+* From your terminal navigate to the <code>Factory/</code> folder and run the command <code>dotnet ef database update</code> to create the database from migrations.
+* Now using your IDE navigate into the Factory.Solution/Factory folder and use the command dotnet run to launch the program.
+* The site should be available at the server address you used in the appsettings.json folder.
 
 ### Test Setup/Installation
 
