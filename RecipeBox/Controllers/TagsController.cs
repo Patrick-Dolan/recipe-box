@@ -68,6 +68,10 @@ namespace RecipeBox.Controllers
     [HttpPost]
     public ActionResult Edit(Tag tag)
     {
+      if (tag.Name == null)
+      {
+        return RedirectToAction("Edit", new { id = tag.TagId});
+      }
       _db.Entry(tag).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = tag.TagId});
